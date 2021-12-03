@@ -1,16 +1,15 @@
-const path = require('path');//引入path模块
-function resolve(dir){
-  return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
-}
-module.exports={
-  chainWebpack:(config)=>{
-    //给路径起别名
-    config.resolve.alias
-        .set('@',resolve('./src'))
-        .set('components',resolve('./src/components'))
-        .set('views',resolve('./src/views'))
-        .set('assets',resolve('./src/assets'))
-    //set第一个参数：设置的别名，第二个参数：设置的路径   在html代码中 ：要在路径前添加波浪线
-
-  }
-}
+//路径起别名
+module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        assets: "@/assets",
+        common: "@/common",
+        components: "@/components",
+        network: "@/network",
+        views: "@/views"
+        /* 由于router和store只在main.js里引用，且其他地方只需要 this.$router就可以，所以不需要 */
+      }
+    }
+  },
+};
